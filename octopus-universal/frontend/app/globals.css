@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background-color: #08060D;
+  color: #ECE8F5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0D0A16;
+}
+::-webkit-scrollbar-thumb {
+  background: #241A3D;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #362A55;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* focus visibile per accessibilita' da tastiera */
+:focus-visible {
+  outline: 2px solid #9D5CFF;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
