@@ -1,0 +1,36 @@
+databases:
+  - name: octopus-db
+    plan: free
+    databaseName: octopus
+    user: octopus
+
+services:
+  - type: redis
+    name: octopus-redis
+    plan: free
+    ipAllowList: []
+
+  - type: web
+    name: octopus-backend
+    env: docker
+    dockerfilePath: ./octopus-universal/backend/Dockerfile
+    dockerContext: ./octopus-universal/backend
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: octopus-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: octopus-redis
+          property: connectionString
+      - key: DATA_PROVIDER
+        value: real
+      - key: CORS_ORIGINS
+        value: https://universal-octopus.vercel.app
+      - key: ENVIRONMENT
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
